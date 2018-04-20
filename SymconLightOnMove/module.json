@@ -1,0 +1,14 @@
+{
+    "id": "{b555dac2-184c-4b72-9a0e-8f0a845ff403}",
+    "name": "ActionOnTrigger",
+    "type": 3,
+    "vendor": "prointernet",
+    "aliases":
+    [
+        "ActionOnTrigger"
+    ],  
+    "parentRequirements": [],
+    "childRequirements": [],
+    "implemented": [],
+    "prefix": "PIAOT"
+}
