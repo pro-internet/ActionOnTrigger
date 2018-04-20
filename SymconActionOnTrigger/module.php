@@ -40,7 +40,7 @@
             $sperre = $this->checkVar("Sperre", 0, true, "", 1);
             $automatik = $this->checkVar("Automatik", 0, true, "", 0);
             $status = $this->checkVar("Status", 0, true, "", 2);
-            $timerLength = $this->checkVar("Nachlauf", 1, true, "", 4, 30);
+            $timerLength = $this->checkVar("Nachlauf", 1, true, "", 4, 30); 
 
             $this->checkFolder("Targets"); 
             $this->checkFolder("Sensoren");
