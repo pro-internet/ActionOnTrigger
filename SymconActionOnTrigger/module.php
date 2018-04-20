@@ -29,7 +29,7 @@
 
             $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
 
-            $this->checkProfile("Sun", 1, 0, 120000, 1000, 0, "", " lx", "Sun");
+            $this->checkProfile("Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
 
             $this->checkProfile("Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
 
