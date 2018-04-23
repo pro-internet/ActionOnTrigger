@@ -25,7 +25,7 @@
 
             $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
  
-            $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", "s", "Clock");
+            $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
 
             $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
 
@@ -1166,7 +1166,7 @@
 
             if ($automatik == true) {
 
-                if ($_IPS['SENDER'] == "TimerEvent" && $sperre == false) {
+                if ($_IPS['SENDER'] == "TimerEvent") {
 
                     // Wenn Event von Timer ausgelöst wurde ( -> Lampen alle aus)
 
