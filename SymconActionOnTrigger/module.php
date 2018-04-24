@@ -1266,11 +1266,11 @@
 
             if ($automatik == false && $sperre == false) {
 
-                if ($this->doesExist($this->searchObjectByName("Status"))) {
+                //if ($this->doesExist($this->searchObjectByName("Status"))) {
 
                     SetValue($this->searchObjectByName("Status"), false);
 
-                }
+                //}
 
                 $this->setAllLamps($this->searchObjectByName("Targets"), false);
 
