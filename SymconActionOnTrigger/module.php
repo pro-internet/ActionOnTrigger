@@ -1266,6 +1266,12 @@
 
             if ($automatik == false && $sperre == false) {
 
+                if ($this->doesExist($this->searchObjectByName("Status"))) {
+
+                    SetValue($this->searchObjectByName("Status"), false);
+
+                }
+
                 $this->setAllLamps($this->searchObjectByName("Targets"), false);
 
                 $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
@@ -1273,11 +1279,6 @@
                 IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
                 IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
 
-                if ($this->doesExist($this->searchObjectByName("Status"))) {
-
-                    SetValue($this->searchObjectByName("Status"), false);
-
-                }
 
                 $this->deleteLink($this->searchObjectByName("Timer"));
 
