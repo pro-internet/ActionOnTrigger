@@ -1266,6 +1266,8 @@
 
             if ($automatik == false && $sperre == false) {
 
+                echo "test";
+
                 //if ($this->doesExist($this->searchObjectByName("Status"))) {
 
                     SetValue($this->searchObjectByName("Status"), false);
