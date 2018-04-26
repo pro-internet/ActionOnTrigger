@@ -245,6 +245,7 @@
         protected function registAllProperties () {
 
             $this->RegisterPropertyBoolean("BenutzeSchwellwert", false);
+            $this->RegisterPropertyBoolean("UseSubTimer", false);
             $this->RegisterPropertyInteger("Lichtsensor", 0);
             $this->RegisterPropertyInteger("ProfileType", 0);
 
@@ -1095,7 +1096,12 @@
                         $timerLength = $timerLength;
 
                         IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
-                        IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 10);
+
+                        if ($this->ReadPropertyBoolean("UseSubTimer") == true) {
+
+                            IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 10);
+
+                        }
 
                         IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), true);
 

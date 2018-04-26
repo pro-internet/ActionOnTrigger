@@ -1,7 +1,7 @@
 {
   "elements": [
 
-    { "type": "Label", "label": "Zusätzliche Optionen" },
+    { "type": "Label", "label": "Schwellwert" },
     { "type": "CheckBox", "name": "BenutzeSchwellwert", "caption": "Benutze Schwellwert"},
     { "type": "SelectVariable", "name": "Lichtsensor", "caption": "Lichtsensor" },
     { "type": "Select", "name": "ProfileType", "caption": "ProfilTyp",
@@ -10,7 +10,9 @@
                 { "label": "Grad (°C)", "value": 1 },
                 { "label": "Grad (°F)", "value": 2 },
                 { "label": "Watt (W)", "value": 3 }
-    ]} 
+    ]},
+    { "type": "Label", "label": "Weitere Optionen" },
+    { "type": "CheckBox", "name": "UseSubTimer", "caption": "Timer verlängern"} 
   ],
   "actions":
   [ 
