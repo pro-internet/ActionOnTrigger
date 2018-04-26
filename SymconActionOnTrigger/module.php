@@ -1097,7 +1097,7 @@
 
                         IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
 
-                        if ($this->ReadPropertyBoolean("UseSubTimer") == true) {
+                        if ($this->ReadPropertyBoolean("UseSubTimer") == true && $timerLength > 10) {
 
                             IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 10);
 
