@@ -1271,7 +1271,7 @@
 
             if ($_IPS['SENDER'] == "TimerEvent") {
 
-                if ($this->isOneTrue()) {
+                if ($this->isOneTrue() && $sperre == false) {
 
                     IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
 
