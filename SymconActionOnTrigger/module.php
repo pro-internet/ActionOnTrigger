@@ -1156,7 +1156,7 @@
 
             //if ($automatik == true) {
 
-                if ($_IPS['SENDER'] == "TimerEvent") {
+                if ($_IPS['SENDER'] == "TimerEvent" && $sperre == false) {
 
                     // Wenn Event von Timer ausgelöst wurde ( -> Lampen alle aus)
 
