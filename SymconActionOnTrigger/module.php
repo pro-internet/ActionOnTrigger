@@ -65,6 +65,14 @@
             
             parent::ApplyChanges();
 
+            $this->checkDimVar();
+
+            $this->mergeEvents();
+
+            $this->linkTresholdSensors();
+
+            $this->checkTreshold(); 
+
             if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
 
                 $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
