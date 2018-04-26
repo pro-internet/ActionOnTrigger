@@ -1030,7 +1030,7 @@
 
                     // Wenn Event von Timer ausgelöst wurde ( -> Lampen alle aus)
 
-                    echo "Licht aus";
+                    echo "Geräte aus";
 
                     $this->setAllLamps($this->searchObjectByName("Targets"), false);
                     
@@ -1049,7 +1049,7 @@
 
                     if ($schwellwertOk == true) {
 
-                        echo "Licht an";
+                        echo "Geräte an";
 
                         SetValue($this->searchObjectByName("Status"), true);
 
