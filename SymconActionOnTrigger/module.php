@@ -1154,7 +1154,7 @@
             $status = GetValue($this->searchObjectByName("Status"));
             $schwellwertOk = $this->checkTresholdOk();
 
-            if ($automatik == true) {
+            //if ($automatik == true) {
 
                 if ($_IPS['SENDER'] == "TimerEvent") {
 
@@ -1174,7 +1174,7 @@
 
                     }
 
-                } else if ($this->isOneTrue() && $sperre == false) {
+                } else if ($this->isOneTrue() && $sperre == false && $automatik == true) {
 
 
                     if ($schwellwertOk == true) {
@@ -1216,11 +1216,11 @@
 
                 }
 
-            } else { 
+            /*} else { 
 
                 echo "Automatik deaktiviert";
 
-            }
+            } */
         }
 
         public function isOneTrue () {
