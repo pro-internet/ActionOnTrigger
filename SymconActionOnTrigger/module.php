@@ -1265,8 +1265,8 @@
             $sperre = GetValue($this->searchObjectByName("Sperre"));
 
             if ($automatik == false && $sperre == false) {
-
-                echo "test";
+   
+   
 
                 //if ($this->doesExist($this->searchObjectByName("Status"))) {
 
