@@ -1179,7 +1179,7 @@
         public function subTimer () {
 
             $schwellwertOk = $this->checkTresholdOk();
-            $actualTimer = IPS_GetScriptTimer($this->getTimer());
+            //$actualTimer = IPS_GetScriptTimer($this->getTimer($this->searchObjectByName("SensorActivated")));
             $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
 
             if ($_IPS['SENDER'] == "TimerEvent") {
