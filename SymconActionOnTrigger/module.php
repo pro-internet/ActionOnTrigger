@@ -237,7 +237,7 @@
         protected function registAllProperties () {
 
             $this->RegisterPropertyBoolean("BenutzeSchwellwert", false);
-            $this->RegisterPopertyInteger("Lichtsensore", 0);
+            $this->RegisterPropertyInteger("Lichtsensor", 0);
             $this->RegisterPropertyInteger("ProfileType", 0);
 
         }
