@@ -1112,6 +1112,7 @@
                             IPS_SetParent($timerLink, $this->InstanceID); 
                             IPS_SetLinkTargetID($timerLink, $this->searchObjectByName("ScriptTimer" ,$this->searchObjectByName("SensorActivated")));   
                             IPS_SetPosition($timerLink, 99);
+                            IPS_SetIcon($timerLink, "Clock");
 
                         } else {
 
