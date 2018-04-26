@@ -1181,6 +1181,7 @@
             $schwellwertOk = $this->checkTresholdOk();
             //$actualTimer = IPS_GetScriptTimer($this->getTimer($this->searchObjectByName("SensorActivated")));
             $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
+            $sperre = GetValue($this->searchObjectByName("Sperre"));
 
             if ($_IPS['SENDER'] == "TimerEvent") {
 
