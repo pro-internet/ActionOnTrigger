@@ -49,6 +49,8 @@
 
             $this->checkScript("AutomaticChange", $this->prefix . "_onAutomaticChange");
 
+            $this->checkScript("SubTimer", $this->prefix . "_subTimer");
+
             $this->mergeEvents();
 
             $this->setOnAutomaticChangeEvent();
@@ -226,24 +228,6 @@
         // Registriert alle Properties (8 Lampen und 6 Senoren) 
  
         protected function registAllProperties () {
-
-            $this->RegisterPropertyInteger("Sensor1", 0);
-            $this->RegisterPropertyInteger("Sensor2", 0);
-            $this->RegisterPropertyInteger("Sensor3", 0);
-            $this->RegisterPropertyInteger("Sensor4", 0);
-            $this->RegisterPropertyInteger("Sensor5", 0);
-            $this->RegisterPropertyInteger("Sensor6", 0);
-            $this->RegisterPropertyInteger("Sensor7", 0);
-            $this->RegisterPropertyInteger("Sensor8", 0);
-
-            $this->RegisterPropertyInteger("Device1", 0);
-            $this->RegisterPropertyInteger("Device2", 0);
-            $this->RegisterPropertyInteger("Device3", 0);
-            $this->RegisterPropertyInteger("Device4", 0);
-            $this->RegisterPropertyInteger("Device5", 0);
-            $this->RegisterPropertyInteger("Device6", 0);
-            $this->RegisterPropertyInteger("Device7", 0);
-            $this->RegisterPropertyInteger("Device8", 0);
 
            //$this->RegisterPropertyInteger("TresholdSensor1", 0);
 
@@ -1190,6 +1174,7 @@
                         $timerLength = $timerLength;
 
                         IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
+                        IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 10);
 
                         IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), true);
 
@@ -1275,6 +1260,28 @@
             //     $this->deleteLink($this->searchObjectByName("Timer"));
 
             // } 
+
+        }
+
+        public function subTimer () {
+
+            $schwellwertOk = $this->checkTresholdOk();
+            $actualTimer = IPS_GetScriptTimer($this->getTimer());
+            $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
+
+            if ($_IPS['SENDER'] == "TimerEvent") {
+
+                if ($this->isOneTrue()) {
+
+                    IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
+
+                } else {
+
+                    IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 0);
+
+                }
+
+            }
 
         }
 
