@@ -1127,7 +1127,11 @@
 
                 } else {
 
-                    echo "Sperre aktiv";
+                    if ($sperre == true) {
+
+                        echo "Sperre aktiv";
+
+                    }
 
                 }
 
