@@ -64,6 +64,13 @@
             // Diese Zeile nicht löschen
             
             parent::ApplyChanges();
+
+            if ($this->doesExist($this->searchObjectByName(""))) {
+
+                $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
+
+            }
+
             
         }
 
@@ -229,9 +236,8 @@
  
         protected function registAllProperties () {
 
-           //$this->RegisterPropertyInteger("TresholdSensor1", 0);
-
             $this->RegisterPropertyBoolean("BenutzeSchwellwert", false);
+            $this->RegisterPopertyInteger("Lichtsensore", 0);
             $this->RegisterPropertyInteger("ProfileType", 0);
 
         }
@@ -242,113 +248,13 @@
 
             $units = array();
 
-            if ($from == "Sensoren") {
+            if ($from == "Lichtsensor") {
 
-                if ($this->ReadPropertyInteger("Sensor1") != null) {
+                if ($this->ReadPropertyInteger("LichtSensor") != null) {
 
-                 $units[] = $this->ReadPropertyInteger("Sensor1");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor2") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor2");
+                    $units[] = $this->ReadPropertyInteger("Lichtsensor");
 
                 }
-
-                if ($this->ReadPropertyInteger("Sensor3") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor3");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor4") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor4");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor5") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor5");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor6") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor6");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor7") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor7");
-
-                }
-
-                if ($this->ReadPropertyInteger("Sensor8") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Sensor8");
-
-                }
-
-            } else if ($from == "Targets") {
-
-                if ($this->ReadPropertyInteger("Device1") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device1");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device2") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device2");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device3") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device3");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device4") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device4");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device5") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device5");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device6") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device6");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device7") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device7");
-
-                }
-
-                if ($this->ReadPropertyInteger("Device8") != null) {
-
-                    $units[] = $this->ReadPropertyInteger("Device8");
-
-                }
-
-            } else if ($from == "TresholdSensors") {
-
-                // if ($this->ReadPropertyInteger("TresholdSensor1") != null) {
-
-                //     $units[] = $this->ReadPropertyInteger("TresholdSensor1");
-
-                // }
 
             }
 
@@ -398,6 +304,12 @@
             $this->linkTresholdSensors();
 
             $this->checkTreshold(); 
+
+            if ($this->doesExist($this->searchObjectByName(""))) {
+
+                $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
+
+            }
 
         }
 
@@ -1016,6 +928,7 @@
         }
 
         // Gleicht Links von Parameter1 den Links von Parameter2 an
+        // UNUSED
 
         public function mergeLinksInFolder ($name, $pname) {
 

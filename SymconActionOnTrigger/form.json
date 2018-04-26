@@ -3,6 +3,7 @@
 
     { "type": "Label", "label": "Zusätzliche Optionen" },
     { "type": "CheckBox", "name": "BenutzeSchwellwert", "caption": "Benutze Schwellwert"},
+    { "type": "SelectVariable", "name": "Lichtsensor", "caption": "Licht" },
     { "type": "Select", "name": "ProfileType", "caption": "ProfilTyp",
             "options": [
                 { "label": "LUX (lx)", "value": 0 },
