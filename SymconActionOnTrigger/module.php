@@ -194,52 +194,6 @@
 
         } 
 
-        protected function linkTresholdSensors () {
-
-            /*if ($this->ReadPropertyBoolean("BenutzeSchwellwert") == true) {
-
-                if (count($this->getPropertyList("TresholdSensors")) > 0) {
-
-                    $allSensors = $this->getPropertyList("TresholdSensors");
-
-                    $sensorsFolder = IPS_GetObject($this->searchObjectByName("SchwellwertSensoren"));
-
-                    print_r($sensorsFolder);
-
-                    $actualSensors = $sensorsFolder['ChildrenIDs'];
-
-                    $sensorVars = [];
-
-                    if (count($actualSensors) > 0) {
-
-                        foreach ($actualSensors as $sensor) {
-
-                            $lnk = IPS_GetLink($sensor);
-
-                            $sensorVars[] = $lnk['TargetID'];
-
-                        }
-
-                    }
-
-                    foreach ($allSensors as $sensor) {
-
-                        if (!in_array($sensor, $sensorVars)) {
-
-                            $sensorObj = IPS_GetObject($sensor);
-
-                            $this->linkVar($sensor, $this->searchObjectByName("SchwellwertSensoren", $sensorObj['ObjectName']));
-
-                        }
-
-                    }
-
-                }
-
-            } */
-
-        }
-
         // Registriert alle Properties (8 Lampen und 6 Senoren) 
  
         protected function registAllProperties () {
@@ -290,13 +244,6 @@
             }
         }
 
-        // Gibt Timer zurück
-
-        public function getTimer ($scriptId) {
-
-            return $this->searchObjectByName("ScriptTimer", $scriptId);
-
-        }
 
         // Updated alle onChange Events
 
@@ -407,6 +354,14 @@
         //                                       //
         //                                      //
 
+        // Gibt Timer zurück
+
+        public function getTimer ($scriptId) {
+
+            return $this->searchObjectByName("ScriptTimer", $scriptId);
+
+        }
+
         // Setzt alle Lampen in einem Dummy Modul auf einen angegebenen Wert
         // [$folder --> (int) id, $wert --> (boolean) An oder Aus]
 
@@ -418,7 +373,7 @@
 
                 foreach ($folder['ChildrenIDs'] as $lamp) {
 
-                    echo $lamp;
+                    //echo $lamp;
 
                     if (IPS_LinkExists($lamp)) {
 
@@ -939,7 +894,6 @@
         }
 
         // Gleicht Links von Parameter1 den Links von Parameter2 an
-        // UNUSED
 
         public function mergeLinksInFolder ($name, $pname) {
 
@@ -1006,6 +960,18 @@
 
             $ob = IPS_GetObject($this->searchObjectByName($name));
             IPS_DeleteInstance($ob['ObjectID']);
+
+        }
+
+        // Löscht Profil
+
+        public function deleteProfile ($name) {
+
+            if (IPS_VariableProfileExists($name)) {
+
+                IPS_DeleteVariableProfile($name);
+
+            }
 
         }
 
@@ -1277,15 +1243,6 @@
 
         }
 
-        public function deleteProfile ($name) {
-
-            if (IPS_VariableProfileExists($name)) {
-
-                IPS_DeleteVariableProfile($name);
-
-            }
-
-        }
 
 
     }
