@@ -1267,6 +1267,8 @@
             $this->checkProfile("Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
             $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
 
+            echo "Profile wurden erfolgreich resettet!";
+
         }
 
         public function deleteProfile ($name) {
