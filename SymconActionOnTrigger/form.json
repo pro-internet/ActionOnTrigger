@@ -1,24 +1,6 @@
 {
   "elements": [
 
-    { "type": "Label", "label": "Sensoren" },
-    { "type": "SelectVariable", "name": "Sensor1", "caption": "Sensor1" },
-    { "type": "SelectVariable", "name": "Sensor2", "caption": "Sensor2" },
-    { "type": "SelectVariable", "name": "Sensor3", "caption": "Sensor3" },
-    { "type": "SelectVariable", "name": "Sensor4", "caption": "Sensor4" },
-    { "type": "SelectVariable", "name": "Sensor5", "caption": "Sensor5" },
-    { "type": "SelectVariable", "name": "Sensor6", "caption": "Sensor6" },
-    { "type": "SelectVariable", "name": "Sensor7", "caption": "Sensor7" },
-    { "type": "SelectVariable", "name": "Sensor8", "caption": "Sensor8" },
-    { "type": "Label", "label": "Geräte (Switch, DimValue, SetValue)" },
-    { "type": "SelectVariable", "name": "Device1", "caption": "Gerät 1" },
-    { "type": "SelectVariable", "name": "Device2", "caption": "Gerät 2" },
-    { "type": "SelectVariable", "name": "Device3", "caption": "Gerät 3" },
-    { "type": "SelectVariable", "name": "Device4", "caption": "Gerät 4" },
-    { "type": "SelectVariable", "name": "Device5", "caption": "Gerät 5" },
-    { "type": "SelectVariable", "name": "Device6", "caption": "Gerät 6" },
-    { "type": "SelectVariable", "name": "Device7", "caption": "Gerät 7" },
-    { "type": "SelectVariable", "name": "Device8", "caption": "Gerät 8" },
     { "type": "Label", "label": "Zusätzliche Optionen" },
     { "type": "CheckBox", "name": "BenutzeSchwellwert", "caption": "Benutze Schwellwert"},
     { "type": "Select", "name": "ProfileType", "caption": "ProfilTyp",
@@ -30,7 +12,7 @@
     ]} 
   ],
   "actions":
-  [
+  [ 
     { "type": "Button", "label": "Sensoren Aktualisieren", "onClick": "PIAOT_updateMe($id);" },
     { "type": "Button", "label": "Profile resetten", "onClick": "PIAOT_resetProfiles($id);" }
   ]
