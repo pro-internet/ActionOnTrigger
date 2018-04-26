@@ -65,7 +65,7 @@
             
             parent::ApplyChanges();
 
-            if ($this->doesExist($this->searchObjectByName(""))) {
+            if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
 
                 $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
 
