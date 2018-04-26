@@ -62,18 +62,6 @@
             // Diese Zeile nicht löschen
             
             parent::ApplyChanges();
-
-            $this->mergeLinksInFolder("Sensoren", "Sensoren");
-
-            $this->mergeLinksInFolder("Targets", "Targets");
-
-            $this->checkDimVar();
-
-            $this->mergeEvents();
-
-            $this->linkTresholdSensors();
-
-            $this->checkTreshold(); 
             
         }
 
@@ -415,15 +403,17 @@
 
         public function updateMe () {
 
-            $this->mergeLinksInFolder("Sensoren", "Sensoren");
+            // $this->mergeLinksInFolder("Sensoren", "Sensoren");
 
-            $this->mergeLinksInFolder("Targets", "Targets");
+            // $this->mergeLinksInFolder("Targets", "Targets");
 
             $this->checkDimVar();
 
             $this->mergeEvents();
 
-            $this->checkTreshold();
+            $this->linkTresholdSensors();
+
+            $this->checkTreshold(); 
 
         }
 
