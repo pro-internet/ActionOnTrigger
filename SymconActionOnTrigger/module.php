@@ -1251,30 +1251,30 @@
 
         public function onAutomaticChange () {
 
-            $automatik = GetValue($this->searchObjectByName("Automatik"));
-            $sperre = GetValue($this->searchObjectByName("Sperre"));
+            // $automatik = GetValue($this->searchObjectByName("Automatik"));
+            // $sperre = GetValue($this->searchObjectByName("Sperre"));
 
-            if ($automatik == false && $sperre == false) {
+            // if ($automatik == false && $sperre == false) {
    
 
 
-                //if ($this->doesExist($this->searchObjectByName("Status"))) {
+            //     //if ($this->doesExist($this->searchObjectByName("Status"))) {
 
-                    SetValue($this->searchObjectByName("Status"), false);
+            //         SetValue($this->searchObjectByName("Status"), false);
 
-                //}
+            //     //}
 
-                $this->setAllLamps($this->searchObjectByName("Targets"), false);
+            //     $this->setAllLamps($this->searchObjectByName("Targets"), false);
 
-                $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
+            //     $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
 
-                IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
-                IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
+            //     IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
+            //     IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
 
 
-                $this->deleteLink($this->searchObjectByName("Timer"));
+            //     $this->deleteLink($this->searchObjectByName("Timer"));
 
-            } 
+            // } 
 
         }
 
