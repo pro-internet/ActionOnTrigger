@@ -194,6 +194,11 @@
 
         } 
 
+        protected function linkTresholdSensors () {
+
+            
+        }
+
         // Registriert alle Properties (8 Lampen und 6 Senoren) 
  
         protected function registAllProperties () {
