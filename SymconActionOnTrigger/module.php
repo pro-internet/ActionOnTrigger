@@ -1266,7 +1266,7 @@
 
             if ($automatik == false && $sperre == false) {
    
-   
+
 
                 //if ($this->doesExist($this->searchObjectByName("Status"))) {
 
@@ -1324,6 +1324,26 @@
             }
 
         } 
+
+        public function resetProfiles () {
+
+            $this->deleteProfile("LOM.Tl");
+            $this->deleteProfile("LOM.Wert.100");
+            $this->deleteProfile("Sun");
+            $this->deleteProfile("Temperature_C");
+            $this->deleteProfile("Temperature_F");
+
+        }
+
+        public function deleteProfile ($name) {
+
+            if (IPS_VariableProfileExists($name)) {
+
+                IPS_DeleteVariableProfile($name);
+
+            }
+
+        }
 
 
     }

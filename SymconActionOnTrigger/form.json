@@ -27,10 +27,11 @@
                 { "label": "Grad (°C)", "value": 1 },
                 { "label": "Grad (°F)", "value": 2 },
                 { "label": "Watt (W)", "value": 3 }
-    ]}
+    ]} 
   ],
   "actions":
   [
-    { "type": "Button", "label": "Sensoren Aktualisieren", "onClick": "PIAOT_updateMe($id);" }
+    { "type": "Button", "label": "Sensoren Aktualisieren", "onClick": "PIAOT_updateMe($id);" },
+    { "type": "Button", "label": "Profile resetten", "onClick": "PIAOT_resetProfiles();" }
   ]
 }
