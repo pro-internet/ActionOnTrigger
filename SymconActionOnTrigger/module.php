@@ -320,6 +320,8 @@
 
             }
 
+            echo "Sensoren wurden aktualisiert!";
+
         }
 
         // Setzt onAutomaticChange Event
