@@ -32,6 +32,6 @@
   "actions":
   [
     { "type": "Button", "label": "Sensoren Aktualisieren", "onClick": "PIAOT_updateMe($id);" },
-    { "type": "Button", "label": "Profile resetten", "onClick": "PIAOT_resetProfiles();" }
+    { "type": "Button", "label": "Profile resetten", "onClick": "PIAOT_resetProfiles($id);" }
   ]
 }
