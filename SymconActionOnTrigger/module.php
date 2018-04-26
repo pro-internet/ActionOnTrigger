@@ -250,7 +250,7 @@
 
             if ($from == "Lichtsensor") {
 
-                if ($this->ReadPropertyInteger("LichtSensor") != null) {
+                if ($this->ReadPropertyInteger("Lichtsensor") != null) {
 
                     $units[] = $this->ReadPropertyInteger("Lichtsensor");
 
