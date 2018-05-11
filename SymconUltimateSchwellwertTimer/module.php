@@ -19,6 +19,8 @@
 
             parent::Create();
 
+            $automaikVar = $this->checkVar("Automatik", 0, true, $this->InstanceID, 0, false);
+            $sperreVar = $this->checkVar("Sperre", 0, true, $this->InstanceID, 1, false);
             
  
         }
