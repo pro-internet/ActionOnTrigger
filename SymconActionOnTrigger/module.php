@@ -1143,8 +1143,6 @@
 
             if ($automatik == false && $sperre == false) {
    
-
-
                 if ($this->doesExist($this->searchObjectByName("Status"))) {
 
                     SetValue($this->searchObjectByName("Status"), false);
@@ -1155,7 +1153,8 @@
 
                 $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
 
-                IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
+                IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), 0);
+                IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 0);
                 IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
 
 
