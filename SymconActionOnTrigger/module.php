@@ -52,8 +52,6 @@
             $this->checkScript("SubTimer", $this->prefix . "_subTimer");
 
             $this->mergeEvents();
-
-            $this->setOnAutomaticChangeEvent();
  
         }
  
@@ -70,6 +68,8 @@
             $this->mergeEvents();
 
             $this->checkTreshold(); 
+
+            $this->setOnAutomaticChangeEvent();
 
             if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
 
