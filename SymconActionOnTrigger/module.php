@@ -29,7 +29,7 @@
 
             $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
 
-            $this->checkProfile("Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
+            $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
 
             $this->checkProfile("Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
 
@@ -197,7 +197,7 @@
         protected function registAllProperties () {
 
             $this->RegisterPropertyBoolean("BenutzeSchwellwert", false);
-            $this->RegisterPropertyBoolean("UseSubTimer", false);
+            $this->RegisterPropertyBoolean("UseSubTimer", true);
             $this->RegisterPropertyInteger("Lichtsensor", 0);
             $this->RegisterPropertyInteger("ProfileType", 0);
 
@@ -581,9 +581,9 @@
 
         public function addThresholdSun ($vid) {
 
-            if (IPS_VariableProfileExists("Sun")) {
+            if (IPS_VariableProfileExists("LOM.Sun")) {
 
-                IPS_SetVariableCustomProfile($vid, "Sun");
+                IPS_SetVariableCustomProfile($vid, "LOM.Sun");
                 IPS_SetVariableCustomAction($vid, $this->searchObjectByName("SetValue"));
 
             }
@@ -1132,30 +1132,30 @@
 
         public function onAutomaticChange () {
 
-            // $automatik = GetValue($this->searchObjectByName("Automatik"));
-            // $sperre = GetValue($this->searchObjectByName("Sperre"));
+            $automatik = GetValue($this->searchObjectByName("Automatik"));
+            $sperre = GetValue($this->searchObjectByName("Sperre"));
 
-            // if ($automatik == false && $sperre == false) {
+            if ($automatik == false && $sperre == false) {
    
 
 
-            //     //if ($this->doesExist($this->searchObjectByName("Status"))) {
+                if ($this->doesExist($this->searchObjectByName("Status"))) {
 
-            //         SetValue($this->searchObjectByName("Status"), false);
+                    SetValue($this->searchObjectByName("Status"), false);
 
-            //     //}
+                }
 
-            //     $this->setAllLamps($this->searchObjectByName("Targets"), false);
+                $this->setAllLamps($this->searchObjectByName("Targets"), false);
 
-            //     $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
+                $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
 
-            //     IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
-            //     IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
+                IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
+                IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
 
 
-            //     $this->deleteLink($this->searchObjectByName("Timer"));
+                $this->deleteLink($this->searchObjectByName("Timer"));
 
-            // } 
+            } 
 
         }
 
@@ -1223,14 +1223,14 @@
 
             $this->deleteProfile("LOM.Tl");
             $this->deleteProfile("LOM.Wert.100");
-            $this->deleteProfile("Sun");
+            $this->deleteProfile("LOM.Sun");
             $this->deleteProfile("Temperature_C");
             $this->deleteProfile("Temperature_F");
 
             $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
             $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
             $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
-            $this->checkProfile("Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
+            $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
             $this->checkProfile("Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
             $this->checkProfile("Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
             $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
