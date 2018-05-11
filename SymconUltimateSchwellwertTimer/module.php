@@ -1,8 +1,8 @@
 <?
     // Klassendefinition
-    class ActionOnTrigger extends IPSModule {
+    class SymconUltimateSchwellwertTimer extends IPSModule {
  
-        public $prefix = "PIAOT";
+        public $prefix = "PISUST";
 
         public function __construct($InstanceID) {
 
@@ -19,39 +19,7 @@
 
             parent::Create();
 
-            $this->registAllProperties();
-
-            $this->checkScript("SetValue", "<?php SetValue(\$IPS_VARIABLE, \$IPS_VALUE); ?>", false);
-
-            $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
- 
-            $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
-
-            $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
-
-            $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
-
-            $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
-
-            $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
-
-            $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
-
-            $sperre = $this->checkVar("Sperre", 0, true, "", 1);
-            $automatik = $this->checkVar("Automatik", 0, true, "", 0);
-            $status = $this->checkVar("Status", 0, true, "", 2);
-            $timerLength = $this->checkVar("Nachlauf", 1, true, "", 4, 30); 
-
-            $this->checkFolder("Targets"); 
-            $this->checkFolder("Sensoren");
-
-            $this->checkScript("SensorActivated", $this->prefix . "_onSensorActivated");
-
-            $this->checkScript("AutomaticChange", $this->prefix . "_onAutomaticChange");
-
-            $this->checkScript("SubTimer", $this->prefix . "_subTimer");
-
-            $this->mergeEvents();
+            
  
         }
  
@@ -63,19 +31,7 @@
             
             parent::ApplyChanges();
 
-            $this->checkDimVar();
-
-            $this->mergeEvents();
-
-            $this->checkTreshold(); 
-
-            $this->setOnAutomaticChangeEvent();
-
-            if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
-
-                $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
-
-            }
+           
 
             
         }
@@ -977,20 +933,6 @@
 
         }
 
-// ------------------------------------------------------------------------------------------------------------
-
-        //                  //
-        //  Set Funktionen  //     // ==> Funktionen die gesetzt werden / bei bestimmten Events ausgeführt werden
-        //                  //
-
-        // Standard SetValue Script
-
-        public function setValue () {
-
-            SetValue($IPS_VARIABLE, $IPS_VALUE);
-
-        }
-
         public function deleteInstance ($id) {
 
             if ($this->doesExist($id)) {
@@ -1020,117 +962,23 @@
             }
 
         }
- 
-        // Wenn einer der Sensoren aktiviert wurde
 
-        public function onSensorActivated () {
+// ------------------------------------------------------------------------------------------------------------
 
-            $automatik = GetValue($this->searchObjectByName("Automatik"));
-            $sperre = GetValue($this->searchObjectByName("Sperre"));
-            $status = GetValue($this->searchObjectByName("Status"));
-            $schwellwertOk = $this->checkTresholdOk();
+        //                  //
+        //  Set Funktionen  //     // ==> Funktionen die gesetzt werden / bei bestimmten Events ausgeführt werden
+        //                  //
 
-            //if ($automatik == true) {
+        // Standard SetValue Script
 
-                if ($_IPS['SENDER'] == "TimerEvent" && $sperre == false) {
+        public function setValue () {
 
-                    // Wenn Event von Timer ausgelöst wurde ( -> Lampen alle aus)
+            SetValue($IPS_VARIABLE, $IPS_VALUE);
 
-                    echo "Geräte aus";
-
-                    $this->setAllLamps($this->searchObjectByName("Targets"), false);
-                    
-                    SetValue($this->searchObjectByName("Status"), false);
-
-                    IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
-
-                    if ($this->doesExist($this->searchObjectByName("Timer"))) {
-
-                        $this->deleteLink($this->searchObjectByName("Timer"));
-
-                    }
-
-                } else if ($this->isOneTrue() && $sperre == false && $automatik == true) {
-
-
-                    if ($schwellwertOk == true) {
-
-                        echo "Geräte an";
-
-                        SetValue($this->searchObjectByName("Status"), true);
-
-                        $this->setAllLamps($this->searchObjectByName("Targets"), true);
-
-                        $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
-
-                        $timerLength = $timerLength;
-
-                        IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
-
-                        if ($this->ReadPropertyBoolean("UseSubTimer") == true && $timerLength > 10) {
-
-                            IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 10);
-
-                        }
-
-                        IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), true);
-
-                        if (!$this->doesExist($this->searchObjectByName("Timer"))) {
-
-                            $timerLink = IPS_CreateLink();
-                            IPS_SetName($timerLink, "Timer"); 
-                            IPS_SetParent($timerLink, $this->InstanceID); 
-                            IPS_SetLinkTargetID($timerLink, $this->searchObjectByName("ScriptTimer" ,$this->searchObjectByName("SensorActivated")));   
-                            IPS_SetPosition($timerLink, 99);
-                            IPS_SetIcon($timerLink, "Clock");
-
-                        } else {
-
-                            $this->show($this->searchObjectByName("Timer"));
-
-                        }
-
-                    }
-
-
-                } else {
-
-                    if ($sperre == true) {
-
-                        echo "Sperre aktiv";
-
-                    }
-
-                }
-
-            /*} else { 
-
-                echo "Automatik deaktiviert";
-
-            } */
         }
 
-        public function isOneTrue () {
 
-            $folder = IPS_GetObject($this->searchObjectByName("Sensoren"));
-
-            $isTrue = false;
-
-            foreach ($folder['ChildrenIDs'] as $lamp) {
-
-                $link = IPS_GetLink($lamp);
-
-                $val = GetValue($link['TargetID']);
-
-                if ($val == true) {
-
-                    $isTrue = true;
-
-                }
-
-            }
-
-            return $isTrue;
+        public function updateMe () {
 
         }
 
@@ -1143,107 +991,11 @@
 
             if ($automatik == false && $sperre == false) {
    
-                if ($this->doesExist($this->searchObjectByName("Status"))) {
-
-                    SetValue($this->searchObjectByName("Status"), false);
-
-                }
-
-                $this->setAllLamps($this->searchObjectByName("Targets"), false);
-
-                $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
-
-                IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), 0);
-                IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 0);
-                IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
-
-
-                $this->deleteLink($this->searchObjectByName("Timer"));
+                
 
             } 
 
         }
-
-        public function subTimer () {
-
-            $schwellwertOk = $this->checkTresholdOk();
-            //$actualTimer = IPS_GetScriptTimer($this->getTimer($this->searchObjectByName("SensorActivated")));
-            $timerLength = GetValue($this->searchObjectByName("Nachlauf"));
-            $sperre = GetValue($this->searchObjectByName("Sperre"));
-
-            if ($_IPS['SENDER'] == "TimerEvent") {
-
-                if ($this->isOneTrue() && $sperre == false) {
-
-                    IPS_SetScriptTimer($this->searchObjectByName("SensorActivated"), $timerLength);
-
-                } else {
-
-                    IPS_SetScriptTimer($this->searchObjectByName("SubTimer"), 0);
-
-                }
-
-            }
-
-        }
-
-        public function checkTresholdOk () {
-
-            if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
-
-                $treshold = GetValue($this->searchObjectByName("Schwellwert"));
-
-                $lightSensors = IPS_GetObject($this->searchObjectByName("SchwellwertSensoren"));
-
-                $childs = $lightSensors['ChildrenIDs'];
-
-                $isOk = false;
-
-                foreach ($childs as $childId) {
-
-                    $child = IPS_GetLink($childId);
-
-                    $childVal = GetValue($child['TargetID']);
-
-
-                    if ($childVal <= $treshold) {
-
-                        $isOk = true;
-
-                    }
-
-                }
-
-                return $isOk;
-
-            } else {
-
-                return true;
-
-            }
-
-        } 
-
-        public function resetProfiles () {
-
-            $this->deleteProfile("LOM.Tl");
-            $this->deleteProfile("LOM.Wert.100");
-            $this->deleteProfile("LOM.Sun");
-            $this->deleteProfile("LOM.Temperature_C");
-            $this->deleteProfile("LOM.Temperature_F");
-
-            $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
-            $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
-            $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Intensity");
-            $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
-            $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
-            $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
-            $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
-
-            echo "Profile wurden erfolgreich resettet!";
-
-        }
-
 
 
     }

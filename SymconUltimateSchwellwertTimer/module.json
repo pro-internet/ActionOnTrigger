@@ -1,11 +1,11 @@
 {
-    "id": "{96381f19-b7e8-423e-8de6-1d9d022aa5a7}",
-    "name": "ActionOnTrigger",
+    "id": "{20dda871-1802-4a08-93c6-22ff2dc5d4c7}",
+    "name": "SymconUltimateSchwellwertTimer",
     "type": 3,
     "vendor": "prointernet",
     "aliases":
     [
-        "ActionOnTrigger"
+        "SymconUltimateSchwellwertTimer"
     ],  
     "parentRequirements": [],
     "childRequirements": [],
