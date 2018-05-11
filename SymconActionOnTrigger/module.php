@@ -459,7 +459,7 @@
 
                                 if ($intensity == 0) {
 
-                                    $intensity = 100;
+                                    $intensity = 80;
 
                                 }
 
