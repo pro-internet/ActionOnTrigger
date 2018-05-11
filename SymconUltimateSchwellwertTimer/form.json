@@ -1,21 +1,9 @@
 {
   "elements": [
 
-    { "type": "Label", "label": "Schwellwert" },
-    { "type": "CheckBox", "name": "BenutzeSchwellwert", "caption": "Benutze Schwellwert"},
-    { "type": "SelectVariable", "name": "Lichtsensor", "caption": "Lichtsensor" },
-    { "type": "Select", "name": "ProfileType", "caption": "ProfilTyp",
-            "options": [
-                { "label": "LUX (lx)", "value": 0 },
-                { "label": "Grad (°C)", "value": 1 },
-                { "label": "Grad (°F)", "value": 2 },
-                { "label": "Watt (W)", "value": 3 }
-    ]},
-    { "type": "Label", "label": "Weitere Optionen" },
-    { "type": "CheckBox", "name": "UseSubTimer", "caption": "Timer verlängern"} 
   ],
   "actions":
   [ 
-    { "type": "Button", "label": "Sensoren Aktualisieren", "onClick": "PISUST_updateMe($id);" },
+    
   ]
 }
