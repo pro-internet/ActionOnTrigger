@@ -457,6 +457,12 @@
 
                                 $intensity = GetValue($this->searchObjectByName("Wert"));
 
+                                if ($intensity == 0) {
+
+                                    $intensity = 100;
+
+                                }
+
                                 if ($wert == false) {
 
                                     $intensity = 0;
