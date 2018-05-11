@@ -31,9 +31,9 @@
 
             $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
 
-            $this->checkProfile("Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
+            $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
 
-            $this->checkProfile("Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
+            $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
 
             $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
 
@@ -138,15 +138,15 @@
 
             if($this->checkEIBDim() != false) {
 
-                $dimIntensity = $this->checkVar("Wert", 1, false, "", 3, 50);
-                IPS_SetVariableCustomProfile($this->searchObjectByName("Wert"), "LOM.Wert.100");
-                IPS_SetVariableCustomAction($this->searchObjectByName("Wert"), $this->searchObjectByName("SetValue"));
+                $dimIntensity = $this->checkVar("Startwert", 1, false, "", 3, 50);
+                IPS_SetVariableCustomProfile($this->searchObjectByName("Startwert"), "LOM.Wert.100");
+                IPS_SetVariableCustomAction($this->searchObjectByName("Startwert"), $this->searchObjectByName("SetValue"));
 
             } else {
 
-                if ($this->doesExist($this->searchObjectByName("Wert"))) {
+                if ($this->doesExist($this->searchObjectByName("Startwert"))) {
 
-                    IPS_DeleteVariable($this->searchObjectByName("Wert"));
+                    IPS_DeleteVariable($this->searchObjectByName("Startwert"));
 
                 }
 
@@ -453,9 +453,9 @@
 
                         if ($getVar['VariableType'] == 1) {
 
-                            if ($this->doesExist($this->searchObjectByName("Wert"))) {
+                            if ($this->doesExist($this->searchObjectByName("Startwert"))) {
 
-                                $intensity = GetValue($this->searchObjectByName("Wert"));
+                                $intensity = GetValue($this->searchObjectByName("Startwert"));
 
                                 if ($intensity == 0) {
 
@@ -598,9 +598,9 @@
 
         public function addThresholdTemperature_F ($vid) {
 
-            if (IPS_VariableProfileExists("Temperature_F")) {
+            if (IPS_VariableProfileExists("LOM.Temperature_F")) {
 
-                IPS_SetVariableCustomProfile($vid, "Temperature_F");
+                IPS_SetVariableCustomProfile($vid, "LOM.Temperature_F");
                 IPS_SetVariableCustomAction($vid, $this->searchObjectByName("SetValue"));
 
             }
@@ -609,9 +609,9 @@
 
         public function addThresholdTemperature_C ($vid) {
 
-            if (IPS_VariableProfileExists("Temperature_C")) {
+            if (IPS_VariableProfileExists("LOM.Temperature_C")) {
 
-                IPS_SetVariableCustomProfile($vid, "Temperature_C");
+                IPS_SetVariableCustomProfile($vid, "LOM.Temperature_C");
                 IPS_SetVariableCustomAction($vid, $this->searchObjectByName("SetValue"));
 
             }
@@ -1230,15 +1230,15 @@
             $this->deleteProfile("LOM.Tl");
             $this->deleteProfile("LOM.Wert.100");
             $this->deleteProfile("LOM.Sun");
-            $this->deleteProfile("Temperature_C");
-            $this->deleteProfile("Temperature_F");
+            $this->deleteProfile("LOM.Temperature_C");
+            $this->deleteProfile("LOM.Temperature_F");
 
             $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
             $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
-            $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
+            $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Intensity");
             $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
-            $this->checkProfile("Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
-            $this->checkProfile("Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
+            $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
+            $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
             $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
 
             echo "Profile wurden erfolgreich resettet!";
