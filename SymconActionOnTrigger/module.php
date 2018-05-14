@@ -19,41 +19,41 @@
 
             parent::Create();
 
-            $this->registAllProperties();
+            //$this->registAllProperties();
 
-            $this->checkScript("SetValue", "<?php SetValue(\$IPS_VARIABLE, \$IPS_VALUE); ?>", false);
+            //$this->checkScript("SetValue", "SetValue(IPS_VARIABLE, IPS_VALUE); ", false);
 
-            $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
+            // $this->checkProfile("Switch", 0, 0, 1, 5, 1, "", "", "");
  
-            $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
+            // $this->checkProfile("LOM.Tl", 1, 0, 3600, 5, 1, "", " s", "Clock");
 
-            $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
+            // $this->checkProfile("LOM.Wert.100", 1, 0, 100, 1, 0, "", " %", "Electricity");
 
-            $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
+            // $this->checkProfile("LOM.Sun", 1, 0, 120000, 1000, 0, "", " lx", "Intensity");
 
-            $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
+            // $this->checkProfile("LOM.Temperature_C", 1, 0, 120, 1, 0, "", " °C", "Temperature");
 
-            $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
+            // $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
 
-            $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
+            // $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
 
-            $sperre = $this->checkVar("Sperre", 0, true, "", 1);
-            $automatik = $this->checkVar("Automatik", 0, true, "", 0);
-            $status = $this->checkVar("Status", 0, true, "", 2);
-            $timerLength = $this->checkVar("Nachlauf", 1, true, "", 4, 30); 
+            // $sperre = $this->checkVar("Sperre", 0, true, "", 1);
+            // $automatik = $this->checkVar("Automatik", 0, true, "", 0);
+            // $status = $this->checkVar("Status", 0, true, "", 2);
+            // $timerLength = $this->checkVar("Nachlauf", 1, true, "", 4, 30); 
 
-            $this->checkFolder("Targets"); 
-            $this->checkFolder("Sensoren");
+            // $this->checkFolder("Targets"); 
+            // $this->checkFolder("Sensoren");
 
-            $this->checkScript("SensorActivated", $this->prefix . "_onSensorActivated");
+            // $this->checkScript("SensorActivated", $this->prefix . "_onSensorActivated");
 
-            $this->checkScript("AutomaticChange", $this->prefix . "_onAutomaticChange");
+            // $this->checkScript("AutomaticChange", $this->prefix . "_onAutomaticChange");
 
-            $this->checkScript("SubTimer", $this->prefix . "_subTimer");
+            // $this->checkScript("SubTimer", $this->prefix . "_subTimer");
 
-            $this->mergeEvents();
+            // $this->mergeEvents();
 
-            $this->setOnAutomaticChangeEvent();
+            //$this->setOnAutomaticChangeEvent();
  
         }
  
@@ -65,17 +65,17 @@
             
             parent::ApplyChanges();
 
-            $this->checkDimVar();
+            // $this->checkDimVar();
 
-            $this->mergeEvents();
+            // $this->mergeEvents();
 
-            $this->checkTreshold(); 
+            // $this->checkTreshold(); 
 
-            if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
+            // if ($this->doesExist($this->searchObjectByName("Schwellwert"))) {
 
-                $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
+            //     $this->mergeLinksInFolder("SchwellwertSensoren", "Lichtsensor");
 
-            }
+            // }
 
             
         }
