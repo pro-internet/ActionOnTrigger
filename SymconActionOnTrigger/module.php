@@ -985,7 +985,7 @@
 
         // Standard SetValue Script
 
-        public function setValue () {
+        public function setValueScript () {
 
             SetValue($IPS_VARIABLE, $IPS_VALUE);
 
