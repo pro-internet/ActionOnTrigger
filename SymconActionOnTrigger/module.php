@@ -57,11 +57,7 @@
 
             $this->setOnAutomaticChangeEvent();
 
-<<<<<<< HEAD
             //$this->setOnStatusChangeEvent();
-=======
-            $this->setOnStatusChangeEvent();
->>>>>>> 515191f00b72f82133f0f4e7095cace4aebbd6ca
  
         }
  
