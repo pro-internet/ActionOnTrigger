@@ -49,11 +49,15 @@
 
             $this->checkScript("AutomaticChange", $this->prefix . "_onAutomaticChange");
 
+            $this->checkScript("StatusChange", $this->prefix . "_onStatusChange");
+
             $this->checkScript("SubTimer", $this->prefix . "_subTimer");
 
             $this->mergeEvents();
 
             $this->setOnAutomaticChangeEvent();
+
+            $this->setOnStatusChangeEvent();
  
         }
  
@@ -276,6 +280,24 @@
             if (count($automatikVar['ChildrenIDs']) == 0 && !$this->doesExist($this->searchEventByTargetId($automatikVar['ObjectID'], null))) {
                 
                 $this->easyCreateFunctionEvent($automatikVar['ObjectID'], "IPS_RunScript(" . $this->searchObjectByName("AutomaticChange") . ");");
+
+            } else { 
+
+
+
+            }
+
+        }
+
+        // Setzt onStatzsChange Event
+
+        protected function setOnStatusChangeEvent () {
+
+            $automatikVar = IPS_GetObject($this->searchObjectByName("Status"));
+
+            if (count($automatikVar['ChildrenIDs']) == 0 && !$this->doesExist($this->searchEventByTargetId($automatikVar['ObjectID'], null))) {
+                
+                $this->easyCreateFunctionEvent($automatikVar['ObjectID'], "IPS_RunScript(" . $this->searchObjectByName("StatusChange") . ");");
 
             } else { 
 
@@ -988,6 +1010,28 @@
         public function setValueScript () {
 
             SetValue($IPS_VARIABLE, $IPS_VALUE);
+
+        }
+
+        public function onStatusChange () {
+                
+            $status = GetValue($this->searchObjectByName("Status"));
+            $sperre = GetValue($this->searchObjectByName("Sperre"));
+            $automatik = GetValue($this->searchObjectByName("Automatik"));
+            
+			if ($status == false && $sperre == false) {
+				
+            
+                IPS_SetEventActive($this->getTimer($this->searchObjectByName("SensorActivated")), false);
+
+                    if ($this->doesExist($this->searchObjectByName("Timer"))) {
+
+                        $this->deleteLink($this->searchObjectByName("Timer"));
+
+                    }
+                
+				
+			}
 
         }
 
