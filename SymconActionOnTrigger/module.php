@@ -267,7 +267,7 @@
 
             }
 
-            echo "Sensoren wurden aktualisiert!";
+            //echo "Sensoren wurden aktualisiert!";
 
         }
 
@@ -1080,7 +1080,7 @@
 
                     // Wenn Event von Timer ausgelöst wurde ( -> Lampen alle aus)
 
-                    echo "Geräte aus";
+                    //echo "Geräte aus";
 
                     $this->setAllLamps($this->searchObjectByName("Targets"), false);
                     
@@ -1099,7 +1099,7 @@
 
                     if ($schwellwertOk == true) {
 
-                        echo "Geräte an";
+                        //echo "Geräte an";
 
                         SetValue($this->searchObjectByName("Status"), true);
 
@@ -1141,7 +1141,7 @@
 
                     if ($sperre == true) {
 
-                        echo "Sperre aktiv";
+                        //echo "Sperre aktiv";
 
                     }
 
@@ -1284,7 +1284,7 @@
             $this->checkProfile("LOM.Temperature_F", 1, 0, 3600, 30, 0, "", " °F", "Temperature");
             $this->checkProfile("Wattage", 1, 0, 5000, 1, 0, "", " W", "Electricity");
 
-            echo "Profile wurden erfolgreich resettet!";
+            //echo "Profile wurden erfolgreich resettet!";
 
         }
 
